@@ -29,5 +29,7 @@ $ npm install @chakra-ui/icons@^2.1.1 @chakra-ui/react@^2.8.1 @emotion/react@^11
 $ npm audit fix
 $ npm run dev
 OR
+$ npm run dth-instagram
+OR
 Create Your Own Project
 ```
