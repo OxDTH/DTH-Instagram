@@ -24,6 +24,13 @@ $ npm install -g vite
 $ npm install @chakra-ui/icons@^2.1.1 @chakra-ui/react@^2.8.1 @emotion/react@^11.11.1 @emotion/styled@^11.11.0 firebase@^10.5.2 framer-motion@^10.16.4 react@^18.2.0 react-dom@^18.2.0 react-firebase-hooks@^5.1.1 react-icons@^4.11.0 react-router-dom@^6.17.0 zustand@^4.4.5
 ```
 
+## SETUP FIREBASE:
+```bash
+$ npm install firebase  
+$ npm install zustand
+$ npm install react-firebase-hooks
+```
+
 ## If Found Vulneabilities Fix Using:
 ```bash
 $ npm audit fix

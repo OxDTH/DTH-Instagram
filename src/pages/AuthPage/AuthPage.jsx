@@ -15,8 +15,12 @@ const AuthPage = () => {
             <AuthForm />
             <Box textAlign={"center"}>Get the App.</Box>
             <Flex gap={5} justifyContent={"center"}>
-              <Image src ="/playstore.png" height={"10"} alt='Playstore Logo' />
-              <Image src ="/microsoft.png" height={"10"} alt='Microsoft Logo' />
+              <a href="https://play.google.com/store" target="_blank" rel="noopener noreferrer">
+                <Image src="/playstore.png" height={"10"} alt="Playstore Logo" />
+              </a>
+              <a href="https://apps.microsoft.com/home" target="_blank" rel="noopener noreferrer">
+                <Image src="/microsoft.png" height={"10"} alt="Microsoft Logo" />
+              </a>
             </Flex>
           </VStack>
         </Flex> 
