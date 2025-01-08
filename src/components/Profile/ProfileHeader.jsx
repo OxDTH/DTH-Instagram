@@ -1,13 +1,18 @@
-import {
-  Avatar,
-  AvatarGroup,
-  Flex,
-  VStack,
-  Text,
-  Button,
-} from "@chakra-ui/react";
+import { Avatar, AvatarGroup, Button, Flex, Text, VStack, useDisclosure  } from "@chakra-ui/react";
+import useUserProfileStore from "../../store/userProfileStore";
+import useAuthStore from "../../store/authStore";
+import EditProfile from "./EditProfile";
+
+
 
 const ProfileHeader = () => {
+  const {userProfile} = useUserProfileStore();
+  const authUser = useAuthStore(state => state.user);
+  const visitingownProfileAndAuth = authUser && authUser.username === userProfile.username;
+  const visitingAnotherProfileAndAuth = authUser && authUser.username !== userProfile.username;
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
+
   return (
     <Flex
       gap={{ base: 4, sm: 10 }}
@@ -21,8 +26,7 @@ const ProfileHeader = () => {
         mx={"auto"}
       >
         <Avatar
-          name="Ritik Mohapatra"
-          src="/profilepic.png"
+          src={userProfile.profilePicURL}
           alt="Ritik Mohapatra Logo"
         />
       </AvatarGroup>
@@ -34,46 +38,60 @@ const ProfileHeader = () => {
           alignItems={"center"}
           w={"full"}
         >
-          <Text fontSize={{ base: "sm", md: "lg" }}>Ritik Mohapatra</Text>
-          <Flex gap={4} alignItems={"center"} justifyContent={"center"}>
+          <Text fontSize={{ base: "sm", md: "lg" }}>{userProfile.username}</Text>
+          {visitingownProfileAndAuth && ( <Flex gap={4} alignItems={"center"} justifyContent={"center"}>
             <Button
               bg={"white"}
               color={"black"}
               _hover={{ bg: "whiteAlpha.800" }}
               size={{ base: "xs", md: "sm" }}
+              onClick={onOpen}
             >
               Edit Profile
             </Button>
           </Flex>
+          )}
+          {visitingAnotherProfileAndAuth && ( <Flex gap={4} alignItems={"center"} justifyContent={"center"}>
+            <Button
+              bg={"blue.500"}
+              color={"white"}
+              _hover={{ bg: "blue.600" }}
+              size={{ base: "xs", md: "sm" }}
+            >
+              Follow
+            </Button>
+          </Flex>
+          )}
         </Flex>
 
         <Flex alignItems={"center"} gap={{ base: 2, sm: 4 }}>
           <Text fontSize={{ base: "xs", md: "sm" }}>
             <Text as={"span"} fontWeight={"bold"} mr={1}>
-              40
+              {userProfile.posts.length}
             </Text>
             Posts
           </Text>
           <Text fontSize={{ base: "xs", md: "sm" }}>
             <Text as={"span"} fontWeight={"bold"} mr={1}>
-              782K
+              {userProfile.followers.length}
             </Text>
             Followers
           </Text>
           <Text fontSize={{ base: "xs", md: "sm" }}>
             <Text as={"span"} fontWeight={"bold"} mr={1}>
-              484
+              {userProfile.following.length}
             </Text>
             Following
           </Text>
         </Flex>
         <Flex alignItems={"center"} gap={4}>
           <Text fontSize={"sm"} fontWeight={"bold"}>
-            Ritik Mohapatra
+            {userProfile.fullName}
           </Text>
         </Flex>
-        <Text fontSize={"sm"}>Bio will be Added. You can type whatever you can write such as a or b or c or d or e.</Text>
+        <Text fontSize={"sm"}>{userProfile.bio}</Text>
       </VStack>
+      {isOpen && <EditProfile isOpen={isOpen} onClose={onClose} />}
     </Flex>
   );
 };

@@ -27,13 +27,18 @@ $ npm install @chakra-ui/icons@^2.1.1 @chakra-ui/react@^2.8.1 @emotion/react@^11
 ## SETUP FIREBASE:
 ```bash
 $ npm install firebase  
+$ npm install axios
 $ npm install zustand
 $ npm install react-firebase-hooks
 ```
 
-## If Found Vulneabilities Fix Using:
+## If Found Vulnerabilities Fix Using:
 ```bash
 $ npm audit fix
+```
+
+## Create Your Own Project or Run:
+```bash
 $ npm run dev
 OR
 $ npm run dth-instagram
